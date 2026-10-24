@@ -58,5 +58,6 @@ if ("IntersectionObserver" in window) {
         section.classList.add("visible");
     });
 }
-
+alert("JavaScript is working!");
+console.log("Hammad Portfolio is connected!");
 

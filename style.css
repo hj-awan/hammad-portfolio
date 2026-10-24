@@ -446,3 +446,55 @@ footer {
     }
 }
 
+/* Interactive gold cursor glow */
+.hero {
+    position: relative;
+    isolation: isolate;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        280px circle at var(--mouse-x, -300px) var(--mouse-y, -300px),
+        rgba(214, 183, 121, 0.13),
+        transparent 75%
+    );
+}
+
+/* Smooth orbital artwork movement */
+.hero-art {
+    transition: transform 0.18s ease-out;
+    will-change: transform;
+}
+
+/* Scroll reveal animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Respect visitors who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-art,
+    .reveal {
+        transition: none;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+

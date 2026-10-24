@@ -2,6 +2,7 @@
 const hero = document.querySelector(".hero");
 const heroArt = document.querySelector(".hero-art");
 
+// 1. Interactive hero glow and artwork movement
 if (hero && heroArt) {
     hero.addEventListener("mousemove", (event) => {
         const rect = hero.getBoundingClientRect();
@@ -9,53 +10,24 @@ if (hero && heroArt) {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
-        const moveX = (x / rect.width - 0.5) * 30;
-        const moveY = (y / rect.height - 0.5) * 30;
+        hero.style.setProperty("--mouse-x", `${x}px`);
+        hero.style.setProperty("--mouse-y", `${y}px`);
+
+        const moveX = (x / rect.width - 0.5) * 24;
+        const moveY = (y / rect.height - 0.5) * 24;
 
         heroArt.style.translate = `${moveX}px ${moveY}px`;
     });
 
     hero.addEventListener("mouseleave", () => {
         heroArt.style.translate = "0px 0px";
-    });
-}
-
-
-
-// 1. Mouse glow and 3D artwork movement
-if (hero && heroArt) {
-    hero.addEventListener("mousemove", (event) => {
-        const rect = hero.getBoundingClientRect();
-
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        const percentX = x / rect.width;
-        const percentY = y / rect.height;
-
-        hero.style.setProperty("--mouse-x", `${x}px`);
-        hero.style.setProperty("--mouse-y", `${y}px`);
-
-        const rotateY = (percentX - 0.5) * 12;
-        const rotateX = (0.5 - percentY) * 12;
-
-        heroArt.style.transform =
-            `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-
-    hero.addEventListener("mouseleave", () => {
-        heroArt.style.transform =
-            "perspective(800px) rotateX(0deg) rotateY(0deg)";
-
         hero.style.setProperty("--mouse-x", "-300px");
         hero.style.setProperty("--mouse-y", "-300px");
     });
 }
 
-// 2. Reveal sections as visitors scroll
-const sections = document.querySelectorAll(
-    "section:not(.hero)"
-);
+// 2. Reveal sections when they enter the screen
+const sections = document.querySelectorAll(".section");
 
 if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -66,7 +38,7 @@ if ("IntersectionObserver" in window) {
             }
         });
     }, {
-        threshold: 0.12
+        threshold: 0.1
     });
 
     sections.forEach((section) => {
@@ -78,5 +50,3 @@ if ("IntersectionObserver" in window) {
         section.classList.add("visible");
     });
 }
-
-

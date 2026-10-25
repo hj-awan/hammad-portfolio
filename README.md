@@ -1,2 +1,2 @@
 # Hammad-portfolio
-My personal portfolio built with HTML and CSS.
+My personal portfolio built with HTML,CSS and JavaScript.

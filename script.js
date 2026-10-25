@@ -74,3 +74,26 @@ detailButtons.forEach((button) => {
     });
 });
 
+
+const skillSection = document.querySelector("#skills");
+
+if (skillSection) {
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                skillSection.querySelectorAll(".skill-fill").forEach((bar) => {
+                    const level = Number(bar.dataset.level);
+
+                    if (Number.isFinite(level) && level >= 0 && level <= 100) {
+                        bar.style.setProperty("--skill-level", `${level}%`);
+                        bar.classList.add("animated");
+                    }
+                });
+
+                skillObserver.disconnect();
+            }
+        });
+    }, { threshold: 0.2 });
+
+    skillObserver.observe(skillSection);
+}

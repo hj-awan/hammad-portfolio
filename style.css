@@ -562,3 +562,42 @@ footer {
     }
 }
 
+
+/* Interactive skills showcase */
+.skill-card {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+}
+
+.skill-track {
+    height: 4px;
+    margin: 18px 0 8px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.skill-fill {
+    width: 0;
+    height: 100%;
+    background: var(--gold);
+    transition: width 1.2s ease;
+}
+
+.skill-fill.animated {
+    width: var(--skill-level);
+}
+
+.skill-card small {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-fill {
+        transition: none;
+    }
+}

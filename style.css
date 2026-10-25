@@ -601,3 +601,25 @@ footer {
         transition: none;
     }
 }
+/* Contact links */
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.contact-links a {
+    display: inline-block;
+    padding: 13px 22px;
+    border: 1px solid var(--gold);
+    color: var(--text);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.contact-links a:hover {
+    background: var(--gold);
+    color: #0B0B0B;
+    transform: translateY(-3px);
+}

@@ -50,3 +50,27 @@ if ("IntersectionObserver" in window) {
         section.classList.add("visible");
     });
 }
+
+
+const detailButtons = document.querySelectorAll(".details-btn");
+
+detailButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const detailsId = button.getAttribute("aria-controls");
+        const details = document.getElementById(detailsId);
+
+        if (!details) return;
+
+        const isOpening = details.hidden;
+
+        details.hidden = !isOpening;
+        button.setAttribute("aria-expanded", String(isOpening));
+
+        button.querySelector("span").textContent =
+            isOpening ? "−" : "＋";
+
+        button.firstChild.textContent =
+            isOpening ? "Hide Details " : "Explore Details ";
+    });
+});
+
